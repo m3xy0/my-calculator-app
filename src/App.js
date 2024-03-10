@@ -30,38 +30,58 @@ function App() {
     else if (e.target.innerText === "=" && input[input.length - 1] === "=") {
       setInput([...input]);
     }
+
     else if (regex2.test(e.target.innerText)) { /* bir işarete basıldıysa */
-    if(input[input.length-2] === "=") {
+      if(input[input.length-2] === "=") {
         setInput([...input.slice(-1), e.target.innerText]);
-      } else {
-      if(regex2.test(input[input.length-1])) { /* inputun son öğesi bir işaret ise */  /* +-/* */ 
-        if (e.target.innerText === "-" && input[input.length - 1] !== "-")  { /* basılan işaret - ise ve son öğe - değil ise */
+      } 
+      else {
+        if(regex2.test(input[input.length-1])) { /* inputun son öğesi bir işaret ise */  /* +-/* */ 
+          if (e.target.innerText === "-" && input[input.length - 1] !== "-")  { /* basılan işaret - ise ve son öğe - değil ise */
           setInput([...input, e.target.innerText]); /* işareti inputa ekle, yani yaz */ 
-        }
-        else { /* aksi halde; yani basılan işaret +,* ya da / ise veya son öğe - değil ise */ 
-          if (regex2.test(input[input.length-2])) {
-            setInput([...input.slice(0,input.length-2), e.target.innerText]);
-          } else {
-          setInput([...input.slice(0, input.length - 1), e.target.innerText]); /* son öğeyi silip basılan işareti ekle */
           }
+          else { /* aksi halde; yani basılan işaret +,* ya da / ise veya son öğe - değil ise */ 
+            if (regex2.test(input[input.length-2])) {
+            setInput([...input.slice(0,input.length-2), e.target.innerText]);
+            } 
+            else {
+              setInput([...input.slice(0, input.length - 1), e.target.innerText]); /* son öğeyi silip basılan işareti ekle */
+            }
+          }
+        } 
+        else { /* inputun son öğesi bir işaret değilse */ 
+          setInput([...input,e.target.innerText]); /* basılan işareti inputa ekle */ 
         }
-      } else { /* inputun son öğesi bir işaret değilse */ 
-    setInput([...input,e.target.innerText]); /* basılan işareti inputa ekle */ 
       }
     }
-    }
-    else if ( regex1.test(e.target.innerText) ) { /*sayıya basıldıysa  */ 
-      if (regex2.test(input[input.length-1])) { /*son öğe işaret ise */
-        if(input[input.length-1] === "-" && regex2.test(input[input.length-2])) { /* eğer son öğe eksi ise ve ondan önce işaret varsa */
+   /* else if ( regex1.test(e.target.innerText) ) { sayıya basıldıysa   
+      if (regex2.test(input[input.length-1])) { son öğe işaret ise 
+        if(input[input.length-1] === "-" && regex2.test(input[input.length-2])) {  eğer son öğe eksi ise ve ondan önce işaret varsa 
         
-        setInput([...input.slice(0,input.length-1), input[input.length-1]+e.target.innerText]) /* eksiyi sayıya bitiştir */
+        setInput([...input.slice(0,input.length-1), input[input.length-1]+e.target.innerText])  eksiyi sayıya bitiştir 
         } 
-        else {  /* diğer durumlarda basılan sayıyı inputa direkt ekle. yani  */
+        else {   diğer durumlarda basılan sayıyı inputa direkt ekle. yani  
       console.log("1");
       setInput([...input,e.target.innerText]);
         }
       }
+    } */
+    else if (regex1.test(e.target.innerText)) {
+      if (input[input.length-2] === "=") {
+        setInput([e.target.innerText]);
+      }
+      else if (/[+\/x]/.test(input[input.length-1])) {
+        setInput([...input, e.target.innerText]);
+      }
+      else if (/\-/.test(input[input.length-1]) && regex1.test(input[input.length-2])) {
+        setInput([...input,e.target.innerText]);
+      }
+      else {
+        console.log("1")
+        setInput([...input.slice(0,-1), input.slice(-1)+e.target.innerText]);
+      }
     }
+    
 
     else if ( e.target.innerText === "." && regex2.test(input[input.length-1])) {
       setInput([...input, "0."]);

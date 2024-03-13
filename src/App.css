@@ -41,6 +41,7 @@ button {
   padding: 2px;
   font-size: 4rem;
   color: white;
+  overflow: hidden;
 
 }
 
@@ -74,5 +75,6 @@ button {
     padding: 2px;
     font-size: 4rem;
     color: white;
+    overflow: hidden;
 }
 

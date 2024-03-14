@@ -13,8 +13,8 @@ function App() {
   function write(e) {
     let regex1 = /[1234567890]/
     let regex2 = /[+\-/x]/
-    if(input.join("").length > 15) {
-      setInput(input);
+    if(input.join("").length > 20) {
+      setInput(input.slice(-2));
     }
     
     else if( input[0] === 0 && e.target.innerText === "0") {
@@ -32,26 +32,26 @@ function App() {
       setInput([...input]);
     }
 
-    else if (regex2.test(e.target.innerText)) { /* bir işarete basıldıysa */
+    else if (regex2.test(e.target.innerText)) {
       if(input[input.length-2] === "=") {
         setInput([...input.slice(-1), e.target.innerText]);
       } 
       else {
-        if(regex2.test(input[input.length-1])  && input[input.length-1].toString().length < 2) { /* inputun son öğesi bir işaret ise */  /* +-/* */ 
-          if (e.target.innerText === "-" && input[input.length - 1] !== "-")  { /* basılan işaret - ise ve son öğe - değil ise */
-          setInput([...input, e.target.innerText]); /* işareti inputa ekle, yani yaz */ 
+        if(regex2.test(input[input.length-1])  && input[input.length-1].toString().length < 2) {  
+          if (e.target.innerText === "-" && input[input.length - 1] !== "-")  { 
+          setInput([...input, e.target.innerText]); 
           }
-          else { /* aksi halde; yani basılan işaret +,* ya da / ise veya son öğe - değil ise */ 
+          else { 
             if (regex2.test(input[input.length-2])) {
             setInput([...input.slice(0,input.length-2), e.target.innerText]);
             } 
             else {
-              setInput([...input.slice(0, input.length - 1), e.target.innerText]); /* son öğeyi silip basılan işareti ekle */
+              setInput([...input.slice(0, input.length - 1), e.target.innerText]); 
             }
           }
         } 
-        else { /* inputun son öğesi bir işaret değilse */ 
-          setInput([...input,e.target.innerText]); /* basılan işareti inputa ekle */ 
+        else { 
+          setInput([...input,e.target.innerText]); 
         }
       }
     }

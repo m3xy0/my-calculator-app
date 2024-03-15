@@ -22,8 +22,8 @@ button:hover {
 }
 
 #calculator {
-  width: 50%;
-  height: 50%;
+  width: 70%;
+  height: 40%;
   display: flex;
   flex-direction: column;
   background-color: #222222;
@@ -52,7 +52,7 @@ button:hover {
   align-items: center;
   padding: 2px;
   padding-right: 1rem;
-  font-size: 6rem;
+  font-size: 5rem;
   color: #f6b60d;
   overflow: hidden;
   background-color: #333333;
@@ -71,7 +71,7 @@ button:hover {
   grid-column: 4 / 5;
 }
 
-@media screen and (min-width: 900px)  {
+@media screen and (min-width: 920px)  {
   #calculator {
     width: 35%;
     height: 70%;

@@ -12,8 +12,10 @@ button {
   background-color: #333333;
   color: #f6b60d;
   border: white 2px solid;
-
   border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 button:hover {
